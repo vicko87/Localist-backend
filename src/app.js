@@ -1,18 +1,27 @@
+
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
 const morgan = require('morgan');
+const helmet = require('helmet');
+require('dotenv').config();
 
 const app = express();
 
-app.use(express.json()); // Para leer JSON en requests
-app.use(cors());         // Permitir peticiones desde frontend
-app.use(helmet());       // Seguridad (encabezados HTTP)
-app.use(morgan("dev"));  // Logs en consola de cada petición
+// Middlewares
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ message: "API is running 🚀" });
+// Importa las rutas de autenticación
+const authRoutes = require('./routes/auth');
+
+// Usa las rutas bajo /api/auth
+app.use('/api/auth', authRoutes);
+
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.json({ message: 'Localist API is running 🚀' });
 });
-
 
 module.exports = app;
