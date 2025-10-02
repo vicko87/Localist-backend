@@ -7,9 +7,9 @@ const auth = require('../middleware/auth');
 router.post('/register', authController.register);
 router.post('/login', authController.login);
 
-// Ruta protegida de ejemplo
-router.get('/private', auth, (req, res) => {
-  res.json({ message: 'Ruta protegida', user: req.user });
+// Endpoint para obtener el perfil del usuario autenticadoS
+router.get('/profile', auth, (req, res) => {
+  res.json({ user: req.user });
 });
 
 module.exports = router;

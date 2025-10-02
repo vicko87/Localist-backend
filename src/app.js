@@ -15,6 +15,9 @@ app.use(express.json());
 
 // Importa las rutas de autenticación
 const authRoutes = require('./routes/auth');
+// ...otros requires...
+const userRoutes = require('./routes/user');
+app.use('/api/user', userRoutes);
 
 // Usa las rutas bajo /api/auth
 app.use('/api/auth', authRoutes);
@@ -23,5 +26,7 @@ app.use('/api/auth', authRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Localist API is running 🚀' });
 });
+
+
 
 module.exports = app;
