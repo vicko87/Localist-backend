@@ -13,6 +13,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 
+
 // Importa las rutas de autenticación
 const authRoutes = require('./routes/auth');
 // ...otros requires...
