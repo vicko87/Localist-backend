@@ -34,7 +34,7 @@ exports.createPlace = async (req, res) => {
 
 exports.getPlaces = async (req, res) => {
     try {
-        const places = await Place.find().populate('createdBy',
+        const places = await Place.find({ createdBy: req.user.userId }).populate('createdBy',
             'username email');
         res.json(places);
     } catch (error) {

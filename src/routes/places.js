@@ -6,8 +6,8 @@ const upload = require('../middleware/upload');
 
 // Todas protegidas por autenticación
 router.post('/', auth, upload.single('image'), placesController.createPlace);
-router.get('/', placesController.getPlaces);
-router.get('/:id', placesController.getPlace);
+router.get('/', auth, placesController.getPlaces);
+router.get('/:id', auth, placesController.getPlace);
 router.put('/:id', auth, upload.single('image'), placesController.updatePlace);//actualizar un lugar
 router.delete('/:id', auth, placesController.deletePlace);
 
